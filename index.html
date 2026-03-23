@@ -1,273 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FionaBlooms</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiona Blooms | Handmade Ribbon Art</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #fff0f3;
+            --glass: rgba(255, 255, 255, 0.2);
+            --dark: #2d3436;
+        }
 
-/* BODY */
-body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    background: url('background.jpg') no-repeat center/cover;
-    color:#333;
-}
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #fbdae0, #ff9a9e, #fad0c4);
+            background-attachment: fixed;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
 
-/* OVERLAY */
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.5);
-    z-index:-1;
-}
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
 
-/* HEADER */
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter: blur(10px);
-    color:white;
-}
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
 
-/* LOGO */
-.logo{
-    font-size:26px;
-    font-weight:bold;
-}
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: var(--primary-pink);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
 
-/* NAV */
-nav{
-    display:flex;
-    gap:25px;
-}
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            margin-left: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
 
-nav a{
-    text-decoration:none;
-    color:white;
-    position:relative;
-}
+        nav a:hover { color: var(--primary-pink); }
 
-/* NAV HOVER */
-nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0%;
-    height:2px;
-    background:#ff4d6d;
-    transition:0.3s;
-}
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
 
-nav a:hover::after{
-    width:100%;
-}
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-/* HERO */
-.hero{
-    text-align:center;
-    padding:70px 20px;
-}
+        .hero p {
+            max-width: 700px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
 
-.hero h1{
-    font-size:42px;
-}
+        /* Products Grid */
+        .section-title {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
 
-.hero p{
-    font-size:18px;
-}
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px 8%;
+        }
 
-/* CONTAINER */
-.container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:25px;
-    padding:30px;
-    max-width:1200px;
-    margin:auto;
-}
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            position: relative;
+        }
 
-/* CARD */
-.card{
-    backdrop-filter: blur(15px);
-    background:rgba(255,255,255,0.6);
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    transition:0.3s;
-}
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
 
-.card:hover{
-    transform:translateY(-10px) scale(1.03);
-}
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
 
-/* IMAGE */
-.card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
+        .card-content {
+            padding: 25px;
+            text-align: center;
+        }
 
-/* CONTENT */
-.card-content{
-    padding:15px;
-    text-align:center;
-}
+        .price-tag {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            display: block;
+            margin: 10px 0;
+        }
 
-/* BUTTON */
-button{
-    background:#25D366;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:25px;
-    cursor:pointer;
-}
+        .btn-order {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-button:hover{
-    background:#1ebe5d;
-}
+        .btn-order:hover {
+            background: #ff758c;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
 
-/* SECTIONS */
-.section{
-    padding:50px 20px;
-    text-align:center;
-}
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 50px 8% 20px;
+            text-align: center;
+        }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:15px;
-    background:rgba(0,0,0,0.8);
-    color:white;
-}
+        .social-icons { margin: 20px 0; }
+        .social-icons a { color: white; font-size: 24px; margin: 0 15px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--primary-pink); }
 
-/* MOBILE */
-@media (max-width:768px){
-
-    header{
-        flex-direction:column;
-        gap:10px;
-        text-align:center;
-    }
-
-    nav{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .hero h1{
-        font-size:28px;
-    }
-
-    .hero p{
-        font-size:14px;
-    }
-
-    .container{
-        grid-template-columns:1fr;
-        padding:15px;
-    }
-
-}
-
-</style>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">FionaBlooms<sup><p>store</p></sup></div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#flowers">Flowers</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <a href="https://wa.me/94701660240" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-<!-- HERO -->
-<section class="hero" id="home">
-    <h1>Fresh Flowers, Delivered with Love 🌼</h1>
-    <p>ඔබේ රුචිකත්වයට ගැළපෙන සුන්දර මල් අපෙන් ?
-        සෑම රිබන් පෙත්තකම ඇත්තේ අපේ ආදරය සහ කැපවීමයි... 🥰🎀 Fiona Blooms වෙතින් රිබන් මල් කලාවේ අලුත්ම හැඩතල! 🎁✨
-​ඔබේ රුචිකත්වය අනුව ඕනෑම වර්ණයකින් සහ හැඩයකින් අපි නිර්මාණය කර දෙනවා. 🌈🌷
-​අපට පණිවිඩයක් එවන්න
-    </p>
-</section>
+    <header>
+        <div class="logo">Fiona Blooms</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#flowers">Designs</a>
+            <a href="#about">Our Story</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-<!-- FLOWERS -->
-<div class="container" id="flowerContainer"></div>
+    <section class="hero" id="home" data-aos="zoom-in">
+        <h1>Handmade with Love 🎀</h1>
+        <p>
+            ඔබේ රුචිකත්වයට ගැළපෙන සුන්දර මල් නිර්මාණයන් අපෙන්. 
+            සෑම රිබන් පෙත්තකම ඇත්තේ අපේ ආදරය සහ කැපවීමයි... 🥰 <br>
+            <b>Fiona Blooms</b> වෙතින් රිබන් මල් කලාවේ අලුත්ම හැඩතල ඕනෑම වර්ණයකින් සහ හැඩයකින්! 🌷✨
+        </p>
+    </section>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-    <h2>About Us</h2>
-    <p>FionaBlooms delivers fresh flowers with love. Easy WhatsApp ordering system.</p>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>📞 0701660240</p>
-    <p>📧 bloomsfiona@gmail.com</p>
-</section>
-
-<footer>
-    © 2026 FionaBlooms
-</footer>
-
-<script>
-
-/* FLOWERS DATA */
-let flowers = [
-    {name:"pipe cleaner flower bouqet", price:999, img:"4.jpg"},
-    {name:"mini ribbon flower bouqet", price:800, img:"5.jpg"},
-    {name:"regular ribbon flower bouqet", price:1000, img:"6.jpg"}
-];
-
-/* LOAD FLOWERS */
-let container = document.getElementById("flowerContainer");
-
-flowers.forEach(flower => {
-
-    let card = `
-    <div class="card">
-        <img src="${flower.img}">
-        <div class="card-content">
-            <h3>${flower.name}</h3>
-            <p>Rs.${flower.price}</p>
-            <button onclick="orderNow('${flower.name}','${flower.price}')">
-                Order Now
-            </button>
+    <h2 class="section-title" id="flowers" data-aos="fade-up">Our Creations</h2>
+    
+    <div class="container" id="flowerContainer">
         </div>
-    </div>
-    `;
 
-    container.innerHTML += card;
+    <section style="padding: 100px 8%; text-align: center; background: rgba(255,255,255,0.2);" id="about" data-aos="fade-right">
+        <h2>Why Choose Fiona Blooms?</h2>
+        <p>අපි පාරිභෝගිකයාගේ සතුට වෙනුවෙන්ම කැපවී සිටිමු. <br>
+        ✅ 100% අතින් නිමවූ උසස් ප්‍රමිතිය | ✅ සාධාරණ මිල ගණන් | ✅ දිවයින පුරා බෙදාහැරීම</p>
+    </section>
 
-});
+    <footer id="contact">
+        <h3>Connect With Us</h3>
+        <p>Call: 070 166 0240 | Email: bloomsfiona@gmail.com</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <hr style="opacity: 0.2;">
+        <p>&copy; 2026 Fiona Blooms - All Rights Reserved</p>
+    </footer>
 
-/* WHATSAPP ORDER */
-function orderNow(flower, price){
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({ duration: 1000, once: true });
 
-    let phone = "94701660240";
+        /* පාරිභෝගිකයාට පහසුවෙන් ඇණවුම් කිරීමට මල් වර්ග මෙතැනට එක් කරන්න */
+        let flowers = [
+            {id: 1, name: "Pipe Cleaner Bouquet", price: 999, img: "4.jpg", desc: "Trendy & Colorful Design"},
+            {id: 2, name: "Mini Ribbon Bouquet", price: 800, img: "5.jpg", desc: "Cute gift for your loved ones"},
+            {id: 3, name: "Regular Ribbon Bouquet", price: 1000, img: "6.jpg", desc: "Classic elegant ribbon flowers"},
+            {id: 4, name: "Custom Flower Box", price: 1500, img: "7.jpg", desc: "Personalized colors & patterns"}
+        ];
 
-    let message = `Hello FionaBlooms 🌸%0A
-Flower: ${flower}%0A
-Price: Rs.${price}%0A
-I want to order this.`;
+        let container = document.getElementById("flowerContainer");
 
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-}
+        flowers.forEach(flower => {
+            container.innerHTML += `
+                <div class="card" data-aos="fade-up">
+                    <img src="${flower.img}" alt="${flower.name}">
+                    <div class="card-content">
+                        <h3>${flower.name}</h3>
+                        <p style="font-size:0.9rem; color:#666;">${flower.desc}</p>
+                        <span class="price-tag">Rs.${flower.price}.00</span>
+                        <button class="btn-order" onclick="orderNow('${flower.name}', '${flower.price}')">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
 
-</script>
-
+        function orderNow(name, price) {
+            let phone = "94701660240";
+            let message = `Hello Fiona Blooms! 🌸%0A%0A` +
+                          `I would like to order a bouquet:%0A` +
+                          `✨ *Item:* ${name}%0A` +
+                          `💰 *Price:* Rs.${price}.00%0A%0A` +
+                          `Please let me know the delivery details.`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
 </body>
 </html>
